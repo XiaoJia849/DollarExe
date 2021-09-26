@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DollarExe</string>
+    <string name="dollar">Dollar</string>
+    <string name="euro">euro</string>
+    <string name="won">won</string>
+    <string name="hello">hello</string>
+</resources>
