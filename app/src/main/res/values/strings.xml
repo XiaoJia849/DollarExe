@@ -4,4 +4,8 @@
     <string name="euro">euro</string>
     <string name="won">won</string>
     <string name="hello">hello</string>
+    <string name="config">config</string>
+    <string name="save">save</string>
+    <string name="setting">setting</string>
+
 </resources>

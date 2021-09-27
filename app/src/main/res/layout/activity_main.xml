@@ -51,7 +51,12 @@
         android:text="@string/won"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    <Button
+        android:id="@+id/jump"
+        android:text="@string/config"
+        android:onClick="open"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>
