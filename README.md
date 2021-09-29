@@ -15,3 +15,17 @@ protected void onActivityResult(int requestCode, int resultCode, @Nullable Inten
 # 2021.9.27
 增加了menu和矢量图标的使用，其他没啥，very easy
 
+# 2021.9.28
+永久数据的配置，很简单的，但是保存的数据类型也是非常简单的数据 \n
+getSharedPreferences读取的配置文件是在app空间内的。 \n
+为了效率，主线程无法从事耗时的工作，例如上网
+采用okhttp 注意编码问题，一定要再response转成string时声明编码，在请求的时候声明编码没有意义 \n
+Response response = client.newCall(request).execute();
+if(response.isSuccessful() ){
+String responseData = new String(response.body().bytes(), "gb2312");
+Log.d("Main",responseData);
+}else {
+throw new IOException("Response  :    ---------------------- " + response);
+}
+效果如下:
+![](./sample_image/img.png)

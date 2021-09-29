@@ -3,7 +3,9 @@ package com.example.dollarexe;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -67,6 +69,15 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
             bundle.putFloat("euroRate",euroRate);
             bundle.putFloat("wonRate",wonRate);
             intent.putExtras(bundle);
+
+            SharedPreferences sp= getSharedPreferences("myRate", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor=  sp.edit();
+            editor.putFloat("dollarRate",dollarRate);
+            editor.putFloat("euroRate",euroRate);
+            editor.putFloat("wonRate",wonRate);
+            Log.d("FirstActivity","saved");
+            editor.apply();
+
 //            startActivity(intent);
             setResult(3,intent);
             finish();
