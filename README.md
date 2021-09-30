@@ -16,10 +16,16 @@ protected void onActivityResult(int requestCode, int resultCode, @Nullable Inten
 增加了menu和矢量图标的使用，其他没啥，very easy
 
 # 2021.9.28
-永久数据的配置，很简单的，但是保存的数据类型也是非常简单的数据 \n
-getSharedPreferences读取的配置文件是在app空间内的。 \n
+永久数据的配置，很简单的，但是保存的数据类型也是非常简单的数据 
+
+getSharedPreferences读取的配置文件是在app空间内的。 
+
 为了效率，主线程无法从事耗时的工作，例如上网
-采用okhttp 注意编码问题，一定要再response转成string时声明编码，在请求的时候声明编码没有意义 \n
+采用okhttp 注意编码问题，一定要再response转成string时声明编码，在请求的时候声明编码没有意义 
+
+上网权限：    <uses-permission android:name="android.permission.INTERNET"/>
+允许用get获取数据  在application内补充 android:usesCleartextTraffic="true"
+
 Response response = client.newCall(request).execute();
 if(response.isSuccessful() ){
 String responseData = new String(response.body().bytes(), "gb2312");
@@ -29,3 +35,14 @@ throw new IOException("Response  :    ---------------------- " + response);
 }
 效果如下:
 ![](./sample_image/img.png)
+
+
+# 2021.9.29
+
+Jsoup比okhttp获取数据更方便，不用考虑编码问题
+
+需要注意document的类型 org.jsoup.nodes.Document
+
+# 2021.9.30
+
+线程中获取时间与当前运行app的时间比对，相同则无处理，不相同就需要再爬取网页获取汇率，保存汇率和日期到myRate文件
