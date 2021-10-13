@@ -46,3 +46,17 @@ Jsoup比okhttp获取数据更方便，不用考虑编码问题
 # 2021.9.30
 
 线程中获取时间与当前运行app的时间比对，相同则无处理，不相同就需要再爬取网页获取汇率，保存汇率和日期到myRate文件
+
+# 2021.10.12
+
+获取国家名称和汇率，用listview(listActivity)展示，使用类内和类外的runnable在MyListActivity,MyTask实现，效果如下
+![](./sample_image/img_2.png)
+
+美化listActivity，item的xml是item_country.xml, 对应的adapter是StrAdapter，只是更改了颜色，整了一下排版
+![](./sample_image/img_1.png)
+
+# 2021.10.13
+上课的时候讲了这个adapter,所以按照上课的节奏再来一遍
+上课讲的是hashmap 和simpleAdapter的配对,我熟悉的是ArrayAdapter<obj> 
+
+今天讲的东西都挺简单的，没啥好说的，我直接push了

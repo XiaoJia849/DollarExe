@@ -75,8 +75,8 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
             editor.putFloat("dollarRate",dollarRate);
             editor.putFloat("euroRate",euroRate);
             editor.putFloat("wonRate",wonRate);
-            Log.d("FirstActivity","saved");
-            editor.apply();
+//            Log.d("FirstActivity","saved");
+//            editor.apply();
 
 //            startActivity(intent);
             setResult(3,intent);

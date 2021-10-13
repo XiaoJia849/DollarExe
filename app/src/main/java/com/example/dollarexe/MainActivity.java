@@ -24,7 +24,6 @@ import android.widget.Toast;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.w3c.dom.Document;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,6 +42,7 @@ import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener,Runnable {
 
+    protected String TAG="MainActivity";
     EditText editText;
     TextView textView;
     float dollarRate;
@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     Handler handler;
 
+    public void setHandler(Handler handler) {
+        this.handler = handler;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,12 +107,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             if(v.getId()==R.id.won){
                 float money=Float.valueOf(input);
                 textView.setText(String.format("%.2f", money*wonRate)+" WON");
-
             }
-
         }
-
-
     }
 
     @Override
