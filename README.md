@@ -1,4 +1,10 @@
-# 2021.9.26
+# DollarExe 《这是课堂学习项目》
+# 作者：王潇潇
+# 学号：41810081
+
+第三次作业到最后一次作业都写在这里
+
+## 2021.9.26
 关于startActivityForResult和setResult逻辑
 A页面总是需要打开B进行配置，配置后回到A页面。
 当A跳转到B时采用startActivityForResult 声明requestCode
@@ -12,10 +18,10 @@ protected void onActivityResult(int requestCode, int resultCode, @Nullable Inten
 
 
 
-# 2021.9.27
+## 2021.9.27
 增加了menu和矢量图标的使用，其他没啥，very easy
 
-# 2021.9.28
+## 2021.9.28
 永久数据的配置，很简单的，但是保存的数据类型也是非常简单的数据 
 
 getSharedPreferences读取的配置文件是在app空间内的。 
@@ -37,17 +43,17 @@ throw new IOException("Response  :    ---------------------- " + response);
 ![](./sample_image/img.png)
 
 
-# 2021.9.29
+## 2021.9.29
 
 Jsoup比okhttp获取数据更方便，不用考虑编码问题
 
 需要注意document的类型 org.jsoup.nodes.Document
 
-# 2021.9.30
+## 2021.9.30
 
 线程中获取时间与当前运行app的时间比对，相同则无处理，不相同就需要再爬取网页获取汇率，保存汇率和日期到myRate文件
 
-# 2021.10.12
+## 2021.10.12
 
 获取国家名称和汇率，用listview(listActivity)展示，使用类内和类外的runnable在MyListActivity,MyTask实现，效果如下
 ![](./sample_image/img_2.png)
@@ -55,8 +61,19 @@ Jsoup比okhttp获取数据更方便，不用考虑编码问题
 美化listActivity，item的xml是item_country.xml, 对应的adapter是StrAdapter，只是更改了颜色，整了一下排版
 ![](./sample_image/img_1.png)
 
-# 2021.10.13
+## 2021.10.13
 上课的时候讲了这个adapter,所以按照上课的节奏再来一遍
 上课讲的是hashmap 和simpleAdapter的配对,我熟悉的是ArrayAdapter<obj> 
 
 今天讲的东西都挺简单的，没啥好说的，我直接push了
+
+## 2021.10.19
+
+AlertDialog的多种用法
+在manifest种设置  android:theme 为dialog 就可把一个ativity直接转为dialog
+
+## 2021.10.20
+
+用数据库存储网上爬取的数据，我不想用sqllite ，但是还是用一下吧，我都忘了这玩意怎么整了
+在线程访问对应的网址获取数据保存到数据库，问题是为什么我的jsoup总要报错，他没有理由报错啊？？？
+

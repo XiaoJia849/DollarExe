@@ -5,8 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     float dollarRate;
     float euroRate;
     float wonRate;
+    private MyDatabaseHelper databaseHelper;
+    private SQLiteDatabase db;
 
     Handler handler;
 
@@ -63,6 +68,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         editText=findViewById(R.id.input);
         textView=findViewById(R.id.output);
+
+
+        databaseHelper=new MyDatabaseHelper(this,"Country.db",null,3);
+        db=databaseHelper.getWritableDatabase();
+
 
 
 //        新版本SDK 需要looper对象
@@ -121,10 +131,23 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.setting){
-            SharedPreferences sharedPreferences=getSharedPreferences("myRate", Activity.MODE_PRIVATE);
-            dollarRate=sharedPreferences.getFloat("dollarRate",6.8f);
-            euroRate=sharedPreferences.getFloat("euroRate",6.8f);
-            wonRate=sharedPreferences.getFloat("wonRate",6.8f);
+//            SharedPreferences sharedPreferences=getSharedPreferences("myRate", Activity.MODE_PRIVATE);
+//            dollarRate=sharedPreferences.getFloat("dollarRate",6.8f);
+//            euroRate=sharedPreferences.getFloat("euroRate",6.8f);
+//            wonRate=sharedPreferences.getFloat("wonRate",6.8f);
+
+            Cursor cursor= db.query("Country",null,"name=?",new String[]{"美元"},null,null,null);
+            dollarRate=Float.valueOf(cursor.getString(cursor.getColumnIndex("value")));
+
+            cursor= db.query("Country",null,"name=?",new String[]{"欧元"},null,null,null);
+            euroRate=Float.valueOf(cursor.getString(cursor.getColumnIndex("value")));
+
+            cursor= db.query("Country",null,"name=?",new String[]{"韩币"},null,null,null);
+            wonRate=Float.valueOf(cursor.getString(cursor.getColumnIndex("value")));
+
+
+
+
 //            Log.d("MainActivity","okkkkkkkkkkkkkkkkkk");
 
         }
@@ -155,9 +178,14 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==1 && resultCode==2){
-            dollarRate = data.getFloatExtra("dollarRate", 6.8f);
-            euroRate = data.getFloatExtra("euroRate", 6.8f);
-            wonRate = data.getFloatExtra("wonRate", 6.8f);
+            Cursor cursor= db.query("Country",null,"name=?",new String[]{"美元"},null,null,null);
+            dollarRate=Float.valueOf(cursor.getString(cursor.getColumnIndex("value")));
+
+            cursor= db.query("Country",null,"name=?",new String[]{"欧元"},null,null,null);
+            euroRate=Float.valueOf(cursor.getString(cursor.getColumnIndex("value")));
+
+            cursor= db.query("Country",null,"name=?",new String[]{"韩币"},null,null,null);
+            wonRate=Float.valueOf(cursor.getString(cursor.getColumnIndex("value")));
 
 //        Log.d("dollarRate Main get :",String.valueOf(dollarRate));super.onActivityResult(requestCode, resultCode, data);
 
@@ -239,24 +267,30 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 //        elements.get() 定位获取element
             for(Element element:elements){
                 Elements td= element.select("td");
-                if("美元".equals(td.get(0).text())){
-                    dollarRate=100/Float.valueOf(td.get(4).text());
-                    Log.d("Main","dollarRate: "+td.get(4).text() );
-                }else if("欧元".equals(td.get(0).text())){
-                    euroRate=100/Float.valueOf(td.get(4).text());
-                    Log.d("Main","euroRate: "+td.get(4).text() );
+//                if("美元".equals(td.get(0).text())){
+//                    dollarRate=100/Float.valueOf(td.get(4).text());
+//                    Log.d("Main","dollarRate: "+td.get(4).text() );
+//                }else if("欧元".equals(td.get(0).text())){
+//                    euroRate=100/Float.valueOf(td.get(4).text());
+//                    Log.d("Main","euroRate: "+td.get(4).text() );
+//
+//                }else if("韩币".equals(td.get(0).text())){
+//                    wonRate=100/Float.valueOf(td.get(4).text());
+//                    Log.d("Main","wonRate: "+td.get(4).text() );
+//                    //         这里因为线程和Activity在一个类内部，所以可以直接修改全局变量
+////                但是更大的项目希望用bundle解决
+//                }
 
-                }else if("韩币".equals(td.get(0).text())){
-                    wonRate=100/Float.valueOf(td.get(4).text());
-                    Log.d("Main","wonRate: "+td.get(4).text() );
-                    //         这里因为线程和Activity在一个类内部，所以可以直接修改全局变量
-//                但是更大的项目希望用bundle解决
-                }
+
+                ContentValues values=new ContentValues();
+                values.put("name",td.get(0).text());
+                values.put("value",td.get(4).text());
+                db.insert("Country",null,values);
             }
             SharedPreferences.Editor editor=  sp.edit();
-            editor.putFloat("dollarRate",dollarRate);
-            editor.putFloat("euroRate",euroRate);
-            editor.putFloat("wonRate",wonRate);
+//            editor.putFloat("dollarRate",dollarRate);
+//            editor.putFloat("euroRate",euroRate);
+//            editor.putFloat("wonRate",wonRate);
             editor.putString("Date",formatter.format(date));
             editor.apply();
         }

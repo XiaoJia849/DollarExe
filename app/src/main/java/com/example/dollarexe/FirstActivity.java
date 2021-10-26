@@ -47,39 +47,39 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if(v.getId()==R.id.save){
             Intent intent =getIntent();
-//            dollarRate=Float.valueOf(dollar.getText().toString());
-//            euroRate=Float.valueOf(euro.getText().toString());
-//            wonRate=Float.valueOf(won.getText().toString());
-//            intent.putExtra("dollarRate",dollarRate);
-//            Log.d("dollarRate  first send:",String.valueOf(dollarRate));
-//            intent.putExtra("euroRate",euroRate);
-//            intent.putExtra("wonRate",wonRate);
-//            startActivity(intent);
-//            setResult(2,intent);
+            dollarRate=Float.valueOf(dollar.getText().toString());
+            euroRate=Float.valueOf(euro.getText().toString());
+            wonRate=Float.valueOf(won.getText().toString());
+            intent.putExtra("dollarRate",dollarRate);
+            Log.d("dollarRate  first send:",String.valueOf(dollarRate));
+            intent.putExtra("euroRate",euroRate);
+            intent.putExtra("wonRate",wonRate);
+            startActivity(intent);
+            setResult(2,intent);
 
 
 
 //            返回类型为budle
-            dollarRate=Float.valueOf(dollar.getText().toString());
-            euroRate=Float.valueOf(euro.getText().toString());
-            wonRate=Float.valueOf(won.getText().toString());
-            Bundle bundle=new Bundle();
-            bundle.putFloat("dollarRate",dollarRate);
-//            Log.d("dollarRate  first send:",String.valueOf(dollarRate));
-            bundle.putFloat("euroRate",euroRate);
-            bundle.putFloat("wonRate",wonRate);
-            intent.putExtras(bundle);
-
-            SharedPreferences sp= getSharedPreferences("myRate", Activity.MODE_PRIVATE);
-            SharedPreferences.Editor editor=  sp.edit();
-            editor.putFloat("dollarRate",dollarRate);
-            editor.putFloat("euroRate",euroRate);
-            editor.putFloat("wonRate",wonRate);
-//            Log.d("FirstActivity","saved");
-//            editor.apply();
-
-//            startActivity(intent);
-            setResult(3,intent);
+//            dollarRate=Float.valueOf(dollar.getText().toString());
+//            euroRate=Float.valueOf(euro.getText().toString());
+//            wonRate=Float.valueOf(won.getText().toString());
+//            Bundle bundle=new Bundle();
+//            bundle.putFloat("dollarRate",dollarRate);
+////            Log.d("dollarRate  first send:",String.valueOf(dollarRate));
+//            bundle.putFloat("euroRate",euroRate);
+//            bundle.putFloat("wonRate",wonRate);
+//            intent.putExtras(bundle);
+//
+//            SharedPreferences sp= getSharedPreferences("myRate", Activity.MODE_PRIVATE);
+//            SharedPreferences.Editor editor=  sp.edit();
+//            editor.putFloat("dollarRate",dollarRate);
+//            editor.putFloat("euroRate",euroRate);
+//            editor.putFloat("wonRate",wonRate);
+////            Log.d("FirstActivity","saved");
+////            editor.apply();
+//
+////            startActivity(intent);
+//            setResult(3,intent);
             finish();
         }
     }

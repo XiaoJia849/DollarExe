@@ -42,10 +42,16 @@ public class ShowActivity extends AppCompatActivity  {
                 input[0] =s.toString();
                 if(!s.toString().equals("")){
                     textView_value_rate.setText(""+Float.valueOf(input[0])*100/Float.valueOf(value));
+                }else {
+                    textView_value_rate.setText("");
+
                 }
             }
             @Override
             public void afterTextChanged(Editable s) {
+//               最好把上面的部分写道这里
+//                String str=s.toString();
+
 
             }
         });

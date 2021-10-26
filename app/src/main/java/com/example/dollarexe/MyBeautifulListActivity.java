@@ -65,6 +65,10 @@ public class MyBeautifulListActivity extends ListActivity implements  Runnable{
             Country country=new Country();
             country.setName(td.get(0).text());
             country.setRate(td.get(4).text());
+
+
+
+
             list.add(country);
         }
         Message message=handler.obtainMessage(0);

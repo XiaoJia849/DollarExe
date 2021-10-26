@@ -10,5 +10,6 @@
     <string name="RMB">yuan</string>
     <string name="change">转换</string>
     <string name="inputRMB">input RMB</string>
+    <string name="loading">loading</string>
 
 </resources>
